@@ -1,0 +1,27 @@
+{% extends 'testApp/base.html' %}
+
+{% block content %}
+<body>
+    <h1>投稿記事一覧</h1>
+
+    <!--検索テキストボックス-->
+    <form action="{% url 'mysnsshow' %}" method="post">
+        {% csrf_token %}
+        <label for="search">検索</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="click">
+    </form>
+    
+    <!-- 投稿内容一覧表示 -->
+    <table>
+        {% for item in data %}
+            <tr>
+                <p>ユーザー名：{{user.username}}</p>
+                <p>コメント：<br>{{item.message|linebreaks}}</p>
+                <p><img src='/testApp{{ MEDIA_URL }}{{item.picture}}' style="width:300px;height:auto"></p>
+                <p><a href="{% url 'snsdelete' item.id %}" class="btn btn-primary btn-sm my-3z">Delete</a></p>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock %}

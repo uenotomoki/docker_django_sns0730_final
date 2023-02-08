@@ -1,0 +1,33 @@
+body{
+    color:black;
+    font-size: 16pt;
+    text-align: center;
+    background-image: url("../images/website_photo_sns_frame.png");
+    /*background-repeat: no-repeat;*/
+    background-size: contain;
+}
+
+h1{
+    color: red;
+    opacity: 1;
+    font-size: 60pt;
+    margin-top: -20px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+p{
+    margin: 10px;
+    text-align: center;
+}
+
+a{
+    text-align: center;
+    color: bule;
+    text-decoration: none;
+}
+
+table{
+    text-align: center;
+    margin:mx-auto；
+}

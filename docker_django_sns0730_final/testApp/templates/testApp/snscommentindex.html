@@ -1,0 +1,29 @@
+{% extends 'testApp/base.html' %}
+
+{% block content %}
+<body>
+    <h1>コメント一覧画面</h1>
+    <tr>
+        <td>ユーザ名：{{data_user.username}}</td><br>
+        <td>メッセージ<br>
+            {{data_message.message}}</td><br>
+            <p><img src='/testApp{{ MEDIA_URL }}{{data_message.picture}}' style="width:300px;height:auto"></p>
+        <td>に対してのコメント一覧</td>
+    </tr>
+    
+    <form action="{% url 'snscommentindex' num %}" method="post">
+        {% csrf_token %}
+        <label for="search">検索</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="click">
+    </form>
+    <br>
+
+        <!--コメント一覧表示-->
+        {% for item in data_comment %}
+            <div class="text-center bg-primary">コメント</div>
+                {{item.message|linebreaks}}
+        {% endfor %}
+    
+</body>
+{% endblock %}

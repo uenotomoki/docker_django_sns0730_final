@@ -1,0 +1,1 @@
+web: gunicorn default_allauth.wsgi

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'testApp/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'testApp/css/bootstrap.min.css' %}">
+</head>
+  <body>
+    <p>ログインユーザ名：{{user}}様</p>
+    <a href= "{% url 'snscreate' %}" class="btn btn-primary btn-sm my-3z">投稿</a>
+    <a href= "{% url 'top' %}" class="btn btn-primary btn-sm my-3z">記事一覧</a>
+    <a href= "{% url 'mysnsshow' %}" class="btn btn-primary btn-sm my-3z">自分の投稿記事一覧</a>
+    <a href="/accounts/logout/" class="btn btn-primary btn-sm my-3z">ログアウト</a>
+    <br>
+    {% block content %}
+    {% endblock %}
+
+    <!--<script src="{% static 'cms/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'cms/js/bootstrap.bundle.min.js' %}"></script>-->
+  </body>
+</html>

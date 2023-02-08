@@ -1,0 +1,66 @@
+{% extends 'testApp/base.html' %}
+
+{% block content %}
+<body>
+    <h1 class="block">投稿内容一覧表示画面</h1>
+    
+    <nav class="navbar navbar-expand navbar-dark bg-info">
+        <div class="mx-auto">
+        <!--検索テキストボックス-->
+        <form action="{% url 'top' %}" method="post">
+            {% csrf_token %}
+            <label for="search">検索</label>
+            <input type="text" id="search" name="search">
+            <input type="submit" value="click">
+        </form>
+    </div>
+</nav>
+
+    <!--ページネーション-->
+    {% if data.has_previous %}
+        <a href = "{% url 'top' %}" >&laquo;first</a>
+        <a href = "{% url 'top' %}{{data.previous_page_number}}">&laquo;prev</a>
+    {% endif %}
+
+    現在{{ data.number }}ページ目
+    {% if data.has_next %}
+    
+        <a href = "{% url 'top' %}{{data.next_page_number}}">next&raquo;</a>
+        <a href = "{% url 'top' %}{{data.end_index}}">last&raquo;</a>
+    
+    {% endif %}
+
+    <h1>testApp</h1>    
+
+    <!-- 投稿内容一覧表示 -->
+    <table>
+        {% for item in data %}
+            <tr>
+                <p>ユーザー名：
+                {% for auth_user in data_user %}
+                        {% if item.user_id == auth_user.id %}
+                            {{auth_user.username}}
+                        {% endif %}
+                {% endfor %}
+                </p>
+                <p>ユーザーコメント：<br>{{item.message|linebreaks}}</p>
+                <p><img src='/testApp{{ MEDIA_URL }}{{item.picture}}' style="width:300px;height:auto"></p>
+                <p><a href="{% url 'snscommentcreate' item.id %}" class="btn btn-primary btn-sm my-3z">コメント投稿</a>
+                    <a href="{% url 'snscommentindex' item.id %}" class="btn btn-primary btn-sm my-3z">コメント一覧<a></p>
+                <!--<p>コメント数{{data_comment_num}}左の{{ forloop.counter }}番目の数</p>-->
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if data.has_previous %}
+        <a href = "{% url 'top' %}" >&laquo;first</a>
+        <a href = "{% url 'top' %}{{data.previous_page_number}}">&laquo;prev</a>
+    {% endif %}
+    現在{{ data.number }}ページ目
+    {% if data.has_next %}
+        <a href = "{% url 'top' %}{{data.next_page_number}}">next&raquo;</a>
+        <a href = "{% url 'top' %}{{data.end_index}}">last&raquo;</a>
+    {% endif %}
+
+</body>
+{% endblock %}

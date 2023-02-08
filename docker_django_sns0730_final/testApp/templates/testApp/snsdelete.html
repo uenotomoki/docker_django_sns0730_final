@@ -1,0 +1,23 @@
+{% extends 'testApp/base.html' %}
+
+{% block content %}
+    <body>
+        <table>
+            <tr>
+                <th>ID</th><td>{{data.id}}</td>
+                <th>data.user_id</th><td>{{data.user_id}}</td>
+                <th>data.message</th><td>{{data.message}}</td>
+            </tr>
+
+            <form action="{% url 'snsdelete' data.id %}" method="post">
+                {% csrf_token %}
+                <tr>
+                    <th>
+                        <td><input type="submit" value="delete"></td>
+                    </th>
+                </tr>
+
+            </form>
+        </table>  
+    </body>
+{% endblock %}

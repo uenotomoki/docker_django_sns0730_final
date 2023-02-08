@@ -1,0 +1,12 @@
+{% extends 'testApp/base.html' %}
+
+{% block content %}
+<body>
+    <h1>投稿画面</h1>
+        <form enctype="multipart/form-data" action="{% url 'snscreate' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="投稿">
+        </form>
+</body>
+{% endblock %}
